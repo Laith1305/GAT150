@@ -45,10 +45,10 @@ void Enemy::Update(float dt)
     if (fireTimer <= 0 && playerSeen) {
         fireTimer = fireTime;
 
-        std::shared_ptr<viper::Model> model = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 0.0f, 1.0f, 0.0f });
+        //std::shared_ptr<viper::Model> model = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 0.0f, 1.0f, 0.0f });
         // spawn rocket at player position and rotation
         viper::Transform transform{ this->transform.position, this->transform.rotation, 2.0f };
-        auto rocket = std::make_unique<Rocket>(transform, model);
+        auto rocket = std::make_unique<Rocket>(transform, viper::Resources().Get<viper::Texture>("textures/missile-1.png", viper::GetEngine().GetRenderer()));
         rocket->speed = 500.0f;
         rocket->lifespan = 1.5f;
         rocket->name = "rocket";
@@ -62,6 +62,7 @@ void Enemy::Update(float dt)
 
 void Enemy::OnCollision(Actor* other)
 {
+
     if (tag != other->tag) {
         destroyed = true;
         scene->GetGame()->AddPoints(100);

@@ -2,14 +2,23 @@
 #include <SDL3/SDL.h>
 #include <SDL3_ttf/SDL_ttf.h>
 #include <iostream>
+#include <SDL3_image/SDL_image.h>
+#include "../Texture.h"
+
 
 namespace viper {
 	class Renderer
 	{
 	public:
+
+		friend class Texture;
+		void DrawTexture(Texture* texture, float x, float y);
+
 		Renderer() = default;
 
 		bool Initialize();
+		//void DrawTexture(Texture* texture, float x, float y);
+		void DrawTexture(Texture* texture, float x, float y, float scale, float angle);
 		void Shutdown();
 		bool CreateWindow(const std::string& name, int width, int height);
 
@@ -24,6 +33,7 @@ namespace viper {
 
 		int GetWidth() const { return m_width; }
 		int GetHeight() const { return m_height; }
+		
 
 	private:
 		friend class Text;
@@ -33,5 +43,8 @@ namespace viper {
 
 		SDL_Window* m_window = nullptr;
 		SDL_Renderer* m_renderer = nullptr;
+
+
+
 	};
 }

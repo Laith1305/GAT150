@@ -1,4 +1,5 @@
 #include "File.h"
+#include "Logger.h"
 #include <iostream>
 #include <fstream>
 
@@ -146,7 +147,7 @@ namespace viper::file {
     bool ReadBinaryFile(const std::string& path, std::vector<uint8_t>& data) {
         std::ifstream file(path, std::ios::binary);
         if (!file.is_open()) {
-            std::cerr << "Read binary file error: " << path << std::endl;
+            Logger::Error("Read binary file error : ", path);
             return false;
         }
 
@@ -156,7 +157,7 @@ namespace viper::file {
         file.seekg(0, std::ios::beg);
 
         if (!file.good()) {
-            std::cerr << "Read binary file error: " << path << std::endl;
+            Logger::Error("Read binary file error: ", path);
             return false;
         }
 
