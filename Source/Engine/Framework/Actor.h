@@ -1,11 +1,13 @@
 #pragma once
+#include "Component.h"
+#include "Object.h"
 #include "Math/Transform.h"
 #include <string>
 #include <memory>
 #include "Texture.h"
 
 namespace viper {
-	class Actor {
+	class Actor : public Object {
 	public:
 		std::string name;
 		std::string tag;
@@ -22,9 +24,8 @@ namespace viper {
 
 	public:
 		Actor() = default;
-		Actor(const Transform& transform, res_t<Texture> texture) :
-			transform{ transform },
-			m_texture{ texture }
+		Actor(const Transform& transform) :
+			transform{ transform }
 		{}
 
 		virtual void Update(float dt);
@@ -34,7 +35,13 @@ namespace viper {
 
 		float GetRadius();
 
+
+		// components
+		void AddComponent(std::unique_ptr<class Component> component);
+
 	protected:
+
+		std::vector<std::unique_ptr<class Component>> m_components;
 		res_t<Texture> m_texture;
 		//std::shared_ptr<Model> m_model;
 	};

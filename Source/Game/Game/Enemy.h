@@ -9,10 +9,9 @@ public:
 
 public:
 	Enemy() = default;
-	Enemy(const viper::Transform& transform, viper::res_t<viper::Texture> texture) :
-		Actor{ transform, texture }
-	{
-	}
+	Enemy(const viper::Transform& transform) :
+		Actor{ transform }
+	{}
 
 	void Update(float dt) override;
 

@@ -67,7 +67,7 @@ namespace viper {
 			const std::string reset = "\033[0m";
 			std::string output = color + prefix + message + reset + "\n";
 
-			Logger::Info(output);
+			std::cerr << output;
 		}
 
 		template<typename... Args>
