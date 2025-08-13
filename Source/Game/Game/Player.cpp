@@ -56,7 +56,7 @@ void Player::Update(float dt)
 
 
         auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
-        spriteRenderer->textureName = "textures/missile-1.png";
+        spriteRenderer->textureName = "textures/missile-2.png";
 
         rocket->AddComponent(std::move(spriteRenderer));
 
