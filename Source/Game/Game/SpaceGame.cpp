@@ -13,6 +13,7 @@
 #include "Resources/ResourceManager.h"
 
 #include <vector>
+#include <Components/SpriteRenderer.h>
 
 bool SpaceGame::Initialize()
 {

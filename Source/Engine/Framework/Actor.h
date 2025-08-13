@@ -5,6 +5,7 @@
 #include <string>
 #include <memory>
 #include "Texture.h"
+#include <vector>
 
 namespace viper {
 	class Actor : public Object {
@@ -12,9 +13,7 @@ namespace viper {
 		std::string name;
 		std::string tag;
 
-		vec2 velocity{ 0, 0 };
-		float damping{ 0.0f };
-
+		
 		bool destroyed{ false };
 		float lifespan{ 0 };
 
@@ -39,10 +38,44 @@ namespace viper {
 		// components
 		void AddComponent(std::unique_ptr<class Component> component);
 
+
+		template <typename T>
+		T* GetComponent();
+
+		template <typename T>
+		std::vector<T*> GetComponents();
+
+		
+
 	protected:
 
 		std::vector<std::unique_ptr<class Component>> m_components;
 		res_t<Texture> m_texture;
 		//std::shared_ptr<Model> m_model;
 	};
+
+
+
+	template<typename T>
+	inline T* Actor::GetComponent()
+	{
+		for (auto& Component : m_components) {
+			auto result = dynamic_cast<T*>(Component.get());
+			if (result) return result;
+		}
+		return nullptr;
+	}
+	template<typename T>
+	inline std::vector<T*> Actor::GetComponents()
+	{
+
+		std::vector<T*> results;
+		for (auto& Component : m_components) {
+			auto result = dynamic_cast<T*>(Component.get());
+			if (result) {
+				results.push_back(result);
+			}
+		}
+		return results;
+	}
 }

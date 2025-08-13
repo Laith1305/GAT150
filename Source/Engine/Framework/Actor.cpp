@@ -9,9 +9,14 @@ namespace viper {
 	{
 		if (destroyed) return;
 
-		if (lifespan != 0) {
+		if (lifespan > 0) {
 			lifespan -= dt;
-			destroyed = lifespan <= 0;
+			if (lifespan <= 0) {
+				destroyed = true;
+				return;
+
+			}
+
 		}
 
 		for (auto& component : m_components) {
@@ -19,8 +24,7 @@ namespace viper {
 		}
 
 
-		transform.position += velocity * dt;
-		velocity *= (1.0f / (1.0f + damping * dt));
+		
 	}
 
 	void Actor::Draw(Renderer& renderer)
