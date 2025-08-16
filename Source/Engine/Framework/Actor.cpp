@@ -1,5 +1,5 @@
 #include "Actor.h"
-#include "../Renderer/Model.h"
+#include "../Renderer/Mesh.h"
 #include "Renderer/Renderer.h"
 #include "Component.h"
 #include <Components/RendererComponent.h>

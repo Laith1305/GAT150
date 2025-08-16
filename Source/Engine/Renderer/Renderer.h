@@ -20,7 +20,7 @@ namespace viper {
 		void DrawTexture(Texture& texture, float x, float y);
 		void DrawTexture(Texture& texture, float x, float y, float angle, float scale = 1);
 		void Shutdown();
-		bool CreateWindow(const std::string& name, int width, int height);
+		bool CreateWindow(const std::string& name, int width, int height, bool fullscreen = false);
 
 		void Clear();
 		void Present();

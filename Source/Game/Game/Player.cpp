@@ -54,9 +54,16 @@ void Player::Update(float dt)
     if (viper::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_SPACE) && fireTimer <= 0) {
         fireTimer = fireTime;
 
-        viper::GetEngine().GetAudio().PlaySound("clap");
+        //viper::GetEngine().GetAudio().PlaySound("clap");
 
-        viper::GetEngine().GetAudio().PlaySound(*viper::Resources().Get<viper::AudioClip>("bass.wav", viper::GetEngine().GetAudio()).get());
+
+        auto sound = viper::Resources().Get<viper::AudioClip>("bass.wav", viper::GetEngine().GetAudio()).get();
+        if (sound) {
+            viper::GetEngine().GetAudio().PlaySound(*sound);
+        }
+
+        
+
 
         //viper::GetEngine().GetAudio().PlaySound(*viper::Resources().Get<viper::AudioClip>("bass.wav", viper::GetEngine().GetAudio()).get());
         //std::shared_ptr<viper::Model> model = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 1.0f, 1.0f, 1.0f });
