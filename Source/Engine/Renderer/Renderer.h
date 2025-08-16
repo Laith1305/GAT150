@@ -12,13 +12,13 @@ namespace viper {
 	public:
 
 		friend class Texture;
-		void DrawTexture(Texture* texture, float x, float y);
+		
 
 		Renderer() = default;
 
 		bool Initialize();
-		//void DrawTexture(Texture* texture, float x, float y);
-		void DrawTexture(Texture* texture, float x, float y, float scale, float angle);
+		void DrawTexture(Texture& texture, float x, float y);
+		void DrawTexture(Texture& texture, float x, float y, float angle, float scale = 1);
 		void Shutdown();
 		bool CreateWindow(const std::string& name, int width, int height);
 

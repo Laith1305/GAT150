@@ -46,10 +46,7 @@ namespace viper {
 		//m_texture->Draw(renderer, transform);
 	}
 
-	float Actor::GetRadius()
-	{
-		return 50.0f; //(m_texture) ? m_texture->GetSize().Length() * 0.5f * transform.scale * 0.9f : 0;
-	}
+	
 	void Actor::AddComponent(std::unique_ptr<class Component> component){
 		component->owner = this;
 		m_components.push_back(std::move(component));

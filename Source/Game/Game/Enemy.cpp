@@ -71,6 +71,13 @@ void Enemy::Update(float dt)
 
         rocket->AddComponent(std::move(spriteRenderer));
 
+        auto rb = std::make_unique<viper::RigidBody>();
+        rocket->AddComponent(std::move(rb));
+
+        auto collider = std::make_unique<viper::CircleCollider2D>();
+        collider->radius = 10;
+        rocket->AddComponent(std::move(collider));
+
         scene->AddActor(std::move(rocket));
     }
 

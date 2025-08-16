@@ -84,7 +84,7 @@ int main(int argc, char* argv[]) {
 
         game->Draw(viper::GetEngine().GetRenderer());
         rotate += 90 * viper::GetEngine().GetTime().GetDeltaTime();
-        viper::GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30, 4, 45);
+        viper::GetEngine().GetRenderer().DrawTexture(*texture.get(), 30, 30, 45, 4);
 
         viper::GetEngine().GetRenderer().Present();
     }

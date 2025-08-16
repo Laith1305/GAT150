@@ -32,7 +32,6 @@ namespace viper {
 
 		virtual void OnCollision(Actor* other) = 0;
 
-		float GetRadius();
 
 
 		// components

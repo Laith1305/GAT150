@@ -87,6 +87,9 @@
     <ClCompile Include="RigidBody.cpp">
       <Filter>Source\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Components\CircleCollider2D.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Random.h">
@@ -179,6 +182,12 @@
       <Filter>Source\Audio</Filter>
     </ClInclude>
     <ClInclude Include="Components\RigidBody.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ColliderComponent.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CircleCollider2D.h">
       <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>

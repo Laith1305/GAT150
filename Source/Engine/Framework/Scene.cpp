@@ -2,7 +2,7 @@
 #include "Actor.h"
 #include "../Core/StringHelper.h"
 #include "../Renderer/Renderer.h"
-
+#include "Components/ColliderComponent.h"
 namespace viper {
 	/// <summary>
 	/// Updates all actors in the scene by advancing their state based on the elapsed time.
@@ -32,11 +32,18 @@ namespace viper {
 			for (auto& actorB : m_actors) {
 				if (actorA == actorB || (actorA->destroyed || actorB->destroyed)) continue;
 
-				float distance = (actorA->transform.position - actorB->transform.position).Length();
-				if (distance <= actorA->GetRadius() + actorB->GetRadius()) {
+				auto colliderA = actorA->GetComponent<ColliderComponent>();
+				auto colliderB = actorB->GetComponent<ColliderComponent>();
+
+				if (!colliderA || !colliderB) continue;
+
+				if (colliderA->CheckCollission(*colliderB)) {
 					actorA->OnCollision(actorB.get());
 					actorB->OnCollision(actorA.get());
+
 				}
+
+				
 			}
 		}
 
