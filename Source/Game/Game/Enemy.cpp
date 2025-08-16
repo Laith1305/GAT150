@@ -11,6 +11,8 @@
 #include "GameData.h"
 #include "Math/Vector2.h"
 #include "Math/Vector3.h"
+#include <Components/SpriteRenderer.h>
+#include <Components/RigidBody.h>
 
 void Enemy::Update(float dt)
 {
