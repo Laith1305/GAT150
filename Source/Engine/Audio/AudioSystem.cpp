@@ -1,6 +1,7 @@
 #include "AudioSystem.h"
 #include "../Core/StringHelper.h"
 #include "Logger.h"
+#include "AudioClip.h"
 #include <fmod_errors.h>
 #include <iostream>
 
@@ -91,6 +92,13 @@ namespace viper {
 
 		// play sound from key
 		FMOD_RESULT result = m_system->playSound(m_sounds[key], 0, false, nullptr);
+		if (!CheckFMODResult(result)) return false;
+
+		return true;
+	}
+	bool AudioSystem::PlaySound(AudioClip& audioClip){
+		
+		FMOD_RESULT result = m_system->playSound(audioClip.m_sound, 0, false, nullptr);
 		if (!CheckFMODResult(result)) return false;
 
 		return true;

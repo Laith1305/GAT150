@@ -11,6 +11,8 @@
 #include "Audio/AudioSystem.h"
 #include <Components/SpriteRenderer.h>
 #include <Components/RigidBody.h>
+#include <Components/CircleCollider2D.h>
+#include <AudioClip.h>
 
 void Player::Update(float dt)
 {
@@ -54,7 +56,7 @@ void Player::Update(float dt)
 
         viper::GetEngine().GetAudio().PlaySound("clap");
 
-
+        viper::GetEngine().GetAudio().PlaySound(*viper::Resources().Get<viper::AudioClip>("bass.wav", viper::GetEngine().GetAudio()).get());
 
         //viper::GetEngine().GetAudio().PlaySound(*viper::Resources().Get<viper::AudioClip>("bass.wav", viper::GetEngine().GetAudio()).get());
         //std::shared_ptr<viper::Model> model = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 1.0f, 1.0f, 1.0f });

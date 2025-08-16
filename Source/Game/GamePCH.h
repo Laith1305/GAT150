@@ -10,6 +10,7 @@
 #include "Components/CircleCollider2D.h"
 
 #include "Audio/AudioSystem.h"
+#include "AudioClip.h"
 
 
 #include "Input/InputSystem.h"
