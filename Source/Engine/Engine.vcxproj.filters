@@ -90,6 +90,9 @@
     <ClCompile Include="Components\CircleCollider2D.cpp">
       <Filter>Source\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Json.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Random.h">
@@ -189,6 +192,9 @@
     </ClInclude>
     <ClInclude Include="Components\CircleCollider2D.h">
       <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Json.h">
+      <Filter>Source\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

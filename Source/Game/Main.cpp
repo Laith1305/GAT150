@@ -17,6 +17,8 @@
 #include "Game/SpaceGame.h"
 #include "Resources/ResourceManager.h"
 #include "Logger.h"
+#include "EngineMinimal.h"
+
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -80,7 +82,7 @@ int main(int argc, char* argv[]) {
 
 
 
-    return 0;
+    //return 0;
 
     
     // initialize engine
@@ -117,6 +119,27 @@ int main(int argc, char* argv[]) {
     texture->Load("pixel-art-drawing-art-game-character-animation-png-favpng-4kk0ZkiGxyz1XXT8FpHiKJ4qy.JPG", viper::GetEngine().GetRenderer());*/
 
 
+
+
+
+    // load the json data from a file
+    std::string buffer;
+    viper::file::ReadTextFile("json.txt", buffer);
+    // show the contents of the json file (debug)
+    std::cout << buffer << std::endl;
+
+    // create json document from the json file contents
+    rapidjson::Document document;
+    viper::Json::Load("json.txt", document);
+
+    // read the age data from the json
+    int age;
+    viper::Json::Read(document, "age", age);
+    // show the age data
+    std::cout << age << std::endl;
+
+
+
     // MAIN LOOP
     while (!quit) {
         while (SDL_PollEvent(&e)) {
@@ -124,6 +147,9 @@ int main(int argc, char* argv[]) {
                 quit = true;
             }
         }
+
+
+
 
         viper::GetEngine().Update();
         game->Update(viper::GetEngine().GetTime().GetDeltaTime());
