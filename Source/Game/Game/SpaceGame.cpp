@@ -12,8 +12,10 @@
 #include "GameData.h"
 #include "Resources/ResourceManager.h"
 
+
 #include <vector>
 #include <Components/SpriteRenderer.h>
+#include <Components/MeshRenderer.h>
 
 bool SpaceGame::Initialize()
 {
@@ -171,9 +173,14 @@ void SpaceGame::SpawnEnemy() {
         enemy->tag = "enemy";
 
 
-        auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
+        /*auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
         spriteRenderer->textureName = "textures/darkgrey_01.png";
-        enemy->AddComponent(std::move(spriteRenderer));
+        enemy->AddComponent(std::move(spriteRenderer));*/
+
+        auto meshRenderer = std::make_unique<viper::MeshRenderer>();
+        meshRenderer->meshName = "Meshes/Enemy.txt";
+        enemy->AddComponent(std::move(meshRenderer));
+
 
 
         auto rb = std::make_unique<viper::RigidBody>();

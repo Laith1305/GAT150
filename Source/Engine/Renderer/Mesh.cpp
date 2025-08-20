@@ -5,7 +5,10 @@ namespace viper {
 	bool Mesh::Load(const std::string& filename){
 
 		std::string buffer;
-		file::ReadTextFile(filename, buffer);
+		if (!file::ReadTextFile(filename, buffer)) {
+			Logger::Error("Could not read file: {}", filename);
+			return false;
+		}
 
 		std::stringstream stream(buffer);
 
@@ -15,6 +18,13 @@ namespace viper {
 
 		while (stream >> point) {
 			m_points.push_back(point);
+		}
+
+		if (!stream.eof()) {
+			Logger::Error("Could not parse file: {}", filename);
+			return false;
+
+
 		}
 
 		return true;
