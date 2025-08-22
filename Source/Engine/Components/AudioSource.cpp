@@ -3,6 +3,7 @@
 #include "Engine.h"
 
 namespace viper {
+	FACTORY_REGISTER(AudioSource)
 
 	void viper::AudioSource::Update(float dt)
 	{

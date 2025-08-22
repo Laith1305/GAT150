@@ -18,11 +18,69 @@
 #include "Resources/ResourceManager.h"
 #include "Logger.h"
 #include "EngineMinimal.h"
-
+#include "Core/Factory.h"
 #include <iostream>
 #include <vector>
 #include <memory>
 //#include <Renderer/Texture.h>
+
+class Animal {
+public:
+    virtual void Speak() = 0;
+
+};
+
+class Cat : public Animal {
+public: 
+    void Speak() override { std::cout << "meow\n"; }
+
+};
+
+class Dog : public Animal {
+public: 
+    void Speak() override { std::cout << "bark\n"; }
+    void Fetch() { std::cout << "got the ball!\n"; }
+};
+class Bird : public Animal {
+public: 
+    void Speak() override { std::cout << "chirp\n"; }
+
+};
+
+enum class AnimalType {
+    Cat,
+    Dog,
+    Bird
+};
+
+
+
+
+
+Animal* CreateAnimal(AnimalType id) {
+    Animal* animal = nullptr;
+
+    switch (id) {
+    case AnimalType::Cat:
+        animal = new Cat();
+        break;
+    case AnimalType::Dog:
+        animal = new Dog();
+        break;
+    case AnimalType::Bird:
+        animal = new Bird();
+
+        break;
+    default:
+        break;
+
+    }
+    return animal;
+
+}
+
+
+
 
 int main(int argc, char* argv[]) {
 
@@ -35,12 +93,23 @@ int main(int argc, char* argv[]) {
     viper::Logger::Info("current directory {}", viper::file::GetCurrentDirectory());
 
 
-    std::cout << argc << std::endl;
-    for (int i = 0; i < argc; i++) {
-        viper::Logger::Debug("arg {}: {}", i, argv[i]);
-        //std::cout << argv[i] << std::endl;
+    auto animal = CreateAnimal(AnimalType::Cat);
+    animal->Speak();
+    auto dog = dynamic_cast<Dog*>(animal);
+    if (dog) {
+        dog->Fetch();
 
     }
+    
+    
+
+
+    //std::cout << argc << std::endl;
+    //for (int i = 0; i < argc; i++) {
+    //    viper::Logger::Debug("arg {}: {}", i, argv[i]);
+    //    //std::cout << argv[i] << std::endl;
+
+    //}
 
 
 
@@ -56,36 +125,36 @@ int main(int argc, char* argv[]) {
     }*/
 
 
-    std::fstream stream("test.txt");
-    if (!stream) {
-        std::cout << "could not open file\n";
+    //std::fstream stream("test.txt");
+    //if (!stream) {
+    //    std::cout << "could not open file\n";
 
-    }
-    //std::cout << stream.rdbuf();
-    std::string line;
-    while (std::getline(stream, line)) {
-        std::cout << line << std::endl;
-    }
-
-
-
-    viper::vec3 v{ 34.5f, 65.5f, 54.0f };
-    std::cout << v << std::endl;
-
-    std::string vstr("{ 23.4, 76.3 }");
-    std::stringstream sstream(vstr);
-
-    viper::vec2 v2;
-    sstream >> v2;
-
-    std::cout << v2 << std::endl;
+    //}
+    ////std::cout << stream.rdbuf();
+    //std::string line;
+    //while (std::getline(stream, line)) {
+    //    std::cout << line << std::endl;
+    //}
 
 
 
-    //return 0;
+    //viper::vec3 v{ 34.5f, 65.5f, 54.0f };
+    //std::cout << v << std::endl;
+
+    //std::string vstr("{ 23.4, 76.3 }");
+    //std::stringstream sstream(vstr);
+
+    //viper::vec2 v2;
+    //sstream >> v2;
+
+    //std::cout << v2 << std::endl;
+
+
+
 
     
     // initialize engine
+    viper::Logger::Warning("initialize engine...");
     viper::GetEngine().Initialize();
     //viper::ResourceManager resourceManager;
     // initialize game

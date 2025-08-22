@@ -208,5 +208,8 @@
     <ClInclude Include="Components\AudioSource.h">
       <Filter>Source\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Factory.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
