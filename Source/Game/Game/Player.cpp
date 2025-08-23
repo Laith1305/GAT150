@@ -14,6 +14,9 @@
 #include <Components/CircleCollider2D.h>
 #include <AudioClip.h>
 
+FACTORY_REGISTER(Player)
+
+
 void Player::Update(float dt)
 {
     viper::Particle particle;

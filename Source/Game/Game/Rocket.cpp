@@ -6,6 +6,9 @@
 #include "Core/Random.h"
 #include "Player.h"
 
+FACTORY_REGISTER(Rocket)
+
+
 void Rocket::Update(float dt)
 {
     viper::vec2 force = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(transform.rotation)) * speed;

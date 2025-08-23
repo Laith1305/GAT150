@@ -82,13 +82,13 @@ Animal* CreateAnimal(AnimalType id) {
 
 
 
+
+
+
 int main(int argc, char* argv[]) {
 
     
-    //viper::Logger::SetEnabledLevels(viper::LogLevel::Error);
-
-
-    viper::file::SetCurrentDirectory("Assets");
+   
 
     viper::Logger::Info("current directory {}", viper::file::GetCurrentDirectory());
 
@@ -101,8 +101,12 @@ int main(int argc, char* argv[]) {
 
     }
     
+    //viper::Factory::Instance().Register<viper::SpriteRenderer>("SpriteRenderer");
+    //viper::Factory::Instance().Register<viper::MeshRenderer>("MeshRenderer");
+   /* auto spriteRenderer = viper::Factory::Instance().Create("MeshRenderer");
+    spriteRenderer->name = "Steve";*/
     
-
+    //return 0;
 
     //std::cout << argc << std::endl;
     //for (int i = 0; i < argc; i++) {

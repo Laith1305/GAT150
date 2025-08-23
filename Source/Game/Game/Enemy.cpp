@@ -14,17 +14,20 @@
 #include <Components/SpriteRenderer.h>
 #include <Components/RigidBody.h>
 
+FACTORY_REGISTER(Enemy)
+
+
 void Enemy::Update(float dt)
 {
     bool playerSeen = false;
 
-    Player* player = scene->GetActorByName<Player>("player");
+    Actor* player = owner->scene->GetActorByName<Actor>("player");
     if (player) {
         viper::vec2 direction{ 0, 0 };
-        direction = player->transform.position - transform.position;
+        direction = player->transform.position - owner->transform.position;
 
         direction = direction.Normalized();
-        viper::vec2 forward = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(transform.rotation));
+        viper::vec2 forward = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(owner->transform.rotation));
 
         float angle = viper::math::radToDeg(viper::vec2::AngleBetween(forward, direction));
         playerSeen = angle <= 30;
@@ -32,24 +35,24 @@ void Enemy::Update(float dt)
         if (playerSeen) {
             float angle = viper::vec2::SignedAngleBetween(forward, direction);
             angle = viper::math::sign(angle);
-            transform.rotation += viper::math::radToDeg(angle * 5 * dt);
+            owner->transform.rotation += viper::math::radToDeg(angle * 5 * dt);
         }
     }
 
-    viper::vec2 force = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(transform.rotation)) * speed;
+    viper::vec2 force = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(owner->transform.rotation)) * speed;
     
 
     //GetComponent<viper::RigidBody>()->velocity += force * dt;
 
-    auto* rb = GetComponent<viper::RigidBody>();
+    auto* rb = owner->GetComponent<viper::RigidBody>();
     if (rb) {
         rb->velocity += force * dt;
     }
 
 
 
-    transform.position.x = viper::math::wrap(transform.position.x, 0.0f, (float)viper::GetEngine().GetRenderer().GetWidth());
-    transform.position.y = viper::math::wrap(transform.position.y, 0.0f, (float)viper::GetEngine().GetRenderer().GetHeight());
+    owner->transform.position.x = viper::math::wrap(owner->transform.position.x, 0.0f, (float)viper::GetEngine().GetRenderer().GetWidth());
+    owner->transform.position.y = viper::math::wrap(owner->transform.position.y, 0.0f, (float)viper::GetEngine().GetRenderer().GetHeight());
 
     // check fire
     fireTimer -= dt;
@@ -58,8 +61,8 @@ void Enemy::Update(float dt)
 
         //std::shared_ptr<viper::Model> model = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 0.0f, 1.0f, 0.0f });
         // spawn rocket at player position and rotation
-        viper::Transform transform{ this->transform.position, this->transform.rotation, 2.0f };
-        auto rocket = std::make_unique<Rocket>(transform);
+        viper::Transform transform{ owner->transform.position, owner->transform.rotation, 2.0f };
+        auto rocket = std::make_unique<Actor>(transform);
         rocket->speed = 500.0f;
         rocket->lifespan = 1.5f;
         rocket->name = "rocket";
