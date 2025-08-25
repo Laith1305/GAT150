@@ -2,9 +2,10 @@
 #include "Component.h"
 #include "Object.h"
 #include "Math/Transform.h"
+#include "Core/Serializable.h"
+#include "Texture.h"
 #include <string>
 #include <memory>
-#include "Texture.h"
 #include <vector>
 
 namespace viper {
@@ -27,10 +28,12 @@ namespace viper {
 			transform{ transform }
 		{}
 
+		void Read(const json::value_t& value) override;
+
 		virtual void Update(float dt);
 		virtual void Draw(class Renderer& renderer);
 
-		virtual void OnCollision(Actor* other) = 0;
+		virtual void OnCollision(Actor* other) {}
 
 
 
@@ -50,6 +53,8 @@ namespace viper {
 
 		std::vector<std::unique_ptr<class Component>> m_components;
 		res_t<Texture> m_texture;
+
+		// Inherited via Serializable
 		//std::shared_ptr<Model> m_model;
 	};
 

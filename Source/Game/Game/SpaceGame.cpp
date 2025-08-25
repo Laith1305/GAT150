@@ -1,4 +1,5 @@
 #include "SpaceGame.h"
+#include "../GamePCH.h"
 #include "Framework/Scene.h"
 #include "Core/Random.h"
 #include "Math/Vector2.h"
@@ -23,11 +24,10 @@ bool SpaceGame::Initialize()
 {
     m_scene = std::make_unique<viper::Scene>(this);
 
-    /*m_titleFont = std::make_shared<viper::Font>();
-    m_titleFont->Load("arcadeclassic.ttf", 128);
+    viper::json::document_t document;
+    viper::json::Load("scene.json", document);
+    m_scene->Read(document);
 
-    m_uiFont = std::make_shared<viper::Font>();
-    m_uiFont->Load("arcadeclassic.ttf", 48);*/
 
     m_titleText = std::make_unique<viper::Text>(viper::ResourceManager::Instance().GetWithID<viper::Font>("title_font", "arcadeclassic.ttf", 128.0f));
     m_scoreText = std::make_unique<viper::Text>(viper::ResourceManager::Instance().GetWithID<viper::Font>("ui_font", "arcadeclassic.ttf", 48.0f));
@@ -60,6 +60,9 @@ void SpaceGame::Update(float dt)
     {
         m_scene->RemoveAllActors();
 
+
+
+        /*
         // create player
         //std::shared_ptr<viper::Model> model = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 0.0f, 0.4f, 1.0f });
         viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f, viper::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 5 };
@@ -86,6 +89,8 @@ void SpaceGame::Update(float dt)
 
 
         m_scene->AddActor(std::move(player));
+        */
+
         m_gameState = GameState::Game;
 
 
@@ -159,6 +164,7 @@ void SpaceGame::OnPlayerDeath() {
 }
 
 void SpaceGame::SpawnEnemy() {
+    /*
     Player* player = m_scene->GetActorByName<Player>("player");
     if (player) {
         //std::shared_ptr<viper::Model> enemyModel = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 1, 0, 0 });
@@ -175,9 +181,9 @@ void SpaceGame::SpawnEnemy() {
         enemy->tag = "enemy";
 
 
-        /*auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
-        spriteRenderer->textureName = "textures/darkgrey_01.png";
-        enemy->AddComponent(std::move(spriteRenderer));*/
+        //auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
+        //spriteRenderer->textureName = "textures/darkgrey_01.png";
+        //enemy->AddComponent(std::move(spriteRenderer));
 
         auto meshRenderer = std::make_unique<viper::MeshRenderer>();
         meshRenderer->meshName = "Meshes/Enemy.txt";
@@ -194,9 +200,9 @@ void SpaceGame::SpawnEnemy() {
         enemy->AddComponent(std::move(collider));
 
 
-        m_scene->AddActor(std::move(enemy));
+        m_scene->AddActor(std::move(enemy)); 
     }
-
+*/
 }
 
 void SpaceGame::Shutdown() {

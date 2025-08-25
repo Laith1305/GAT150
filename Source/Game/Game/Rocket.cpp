@@ -1,4 +1,5 @@
 #include "Rocket.h"
+#include "../GamePCH.h"
 #include "Engine.h"
 #include "Framework/Scene.h"
 #include "Renderer/Renderer.h"
@@ -11,6 +12,7 @@ FACTORY_REGISTER(Rocket)
 
 void Rocket::Update(float dt)
 {
+    /*
     viper::vec2 force = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(transform.rotation)) * speed;
     auto* rb = GetComponent<viper::RigidBody>();
     if (rb) {
@@ -32,12 +34,12 @@ void Rocket::Update(float dt)
 
     viper::GetEngine().GetPS().AddParticle(particle);
 
-    Actor::Update(dt);
+    Actor::Update(dt); */
 }
 
-void Rocket::OnCollision(Actor* other)
+void Rocket::OnCollision(viper::Actor* other)
 {
-    if (tag != other->tag) {
-        destroyed = true;
+    if (owner->tag != other->tag) {
+        owner->destroyed = true;
     }
 }

@@ -63,10 +63,21 @@ namespace viper {
 		std::string key = tolower(name);
 		auto it = m_registry.find(key);
 		if (it != m_registry.end()) {
-			return it->second->Create();
+		
+			auto object = it->second->Create();
+			T* derived = dynamic_cast<T*>(object.get());
+			if (derived) {
+				object.release();
+
+				return std::unique_ptr<T>(derived);
+			}
+			Logger::Error("Type mismatch of factory object: {}", name);
 
 		}
-		Logger::Error("Could not creae  factory object: {}", name);
+		else {
+			Logger::Error("Could not creae factory object: {}", name);
+
+		}
 
 		return nullptr;
 	}
