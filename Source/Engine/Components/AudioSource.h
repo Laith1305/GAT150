@@ -6,6 +6,7 @@ namespace viper {
 	public:
 		std::string audioClipName;
 	public:
+		CLASS_PROTOTYPE(AudioSource)
 
 
 		// Inherited via Component

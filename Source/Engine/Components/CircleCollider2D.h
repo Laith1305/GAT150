@@ -10,6 +10,9 @@ namespace viper {
 
 	public:
 
+		CLASS_PROTOTYPE(CircleCollider2D)
+
+
 		// Inherited via ColliderComponent
 		void Update(float dt) override;
 

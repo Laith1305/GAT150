@@ -7,6 +7,19 @@
 namespace viper {
 	FACTORY_REGISTER(Actor)
 
+
+	Actor::Actor(const Actor& other)  :
+		Object{ other },
+		tag{ other.tag },
+		lifespan{ other.lifespan },
+		transform{ other.transform }
+	{
+		for (auto& component : other.m_components) {
+			auto clone = std::unique_ptr<Component>(dynamic_cast<Component*>(component->Clone().release()));
+			AddComponent(std::move(clone));
+		}
+
+	}
 	void Actor::Update(float dt)
 	{
 		if (destroyed) return;
@@ -54,11 +67,13 @@ namespace viper {
 		m_components.push_back(std::move(component));
 
 	}
+	
 	void Actor::Read(const json::value_t& value){
 		Object::Read(value);
 
 		JSON_READ(value, tag);
 		JSON_READ(value, lifespan);
+		JSON_READ(value, persistent);
 
 		if (JSON_HAS(value,transform)) transform.Read(JSON_GET(value, transform));
 

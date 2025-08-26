@@ -9,6 +9,7 @@ namespace viper {
 
 
 	public:
+		CLASS_PROTOTYPE(RigidBody)
 
 
 		void Update(float dt) override;

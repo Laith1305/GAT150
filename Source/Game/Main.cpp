@@ -22,7 +22,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
-//#include <Renderer/Texture.h>
+
 
 
 
@@ -32,6 +32,9 @@
 
 
 int main(int argc, char* argv[]) {
+
+
+
 
     
     viper::file::SetCurrentDirectory("Assets");
@@ -66,7 +69,7 @@ int main(int argc, char* argv[]) {
 
 
 
-
+        // update
         viper::GetEngine().Update();
         game->Update(viper::GetEngine().GetTime().GetDeltaTime());
        

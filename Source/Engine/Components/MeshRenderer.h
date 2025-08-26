@@ -9,6 +9,9 @@ namespace viper {
 
 	public:
 
+		CLASS_PROTOTYPE(MeshRenderer)
+
+
 		// Inherited via RendererComponent
 		void Update(float dt) override;
 		void Draw(Renderer& renderer) override;

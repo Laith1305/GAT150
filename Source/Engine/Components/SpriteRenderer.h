@@ -11,6 +11,9 @@ namespace viper {
 
 	public:
 
+		CLASS_PROTOTYPE(SpriteRenderer)
+
+
 		// Inherited via RendererComponent
 		void Update(float dt) override;
 

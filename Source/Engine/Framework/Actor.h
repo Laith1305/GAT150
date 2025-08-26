@@ -14,6 +14,9 @@ namespace viper {
 		std::string tag;
 
 		float lifespan{ 0 };
+
+		bool persistent{ false };
+
 		
 		Transform transform;
 
@@ -26,6 +29,10 @@ namespace viper {
 		Actor(const Transform& transform) :
 			transform{ transform }
 		{}
+		Actor(const Actor& other);
+
+
+		CLASS_PROTOTYPE(Actor)
 
 		void Read(const json::value_t& value) override;
 
@@ -37,7 +44,7 @@ namespace viper {
 
 
 		// components
-		void AddComponent(std::unique_ptr<class Component> component);
+		void AddComponent(std::unique_ptr<Component> component);
 
 
 		template <typename T>
