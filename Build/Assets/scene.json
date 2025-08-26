@@ -20,7 +20,7 @@
         },
         {
           "type": "SpriteRenderer",
-          "texture_name": "texture/blue_05.png"
+          "texture_name": "textures/blue_05.png"
         },
         {
           "type": "RigidBody",
@@ -56,7 +56,7 @@
         },
         {
           "type": "SpriteRenderer",
-          "texture_name": "texture/darkgrey_01.png"
+          "texture_name": "textures/darkgrey_01.png"
         },
         {
           "type": "RigidBody",
@@ -83,15 +83,15 @@
           640,
           512
         ],
-        "rotation": 0,
-        "scale": 2
+        "rotation": 90.0,
+        "scale": 50.0
       },
       "components": [
         {
           "type": "SpriteRenderer",
-          "texture_name": "texture/space-background.jpg"
+          "texture_name": "textures/space-background.jpg"
         }
       ]
-    },
+    }
   ]
 }

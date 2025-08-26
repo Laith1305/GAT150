@@ -91,6 +91,6 @@ namespace viper {
 		}
 
 	private:
-		inline static LogLevel s_enabledLevels = LogLevel::Warning | LogLevel::Debug;//LogLevel::All;
+		inline static LogLevel s_enabledLevels = LogLevel::Warning | LogLevel::Debug | LogLevel::Error;//LogLevel::All;
 	};
 }

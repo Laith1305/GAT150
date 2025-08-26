@@ -107,7 +107,7 @@ namespace viper {
 
 		//load resource
 		res_t<T> resource = std::make_shared<T>();
-		if (resource->Load(key, std::forward<Args>(args)...) == false) {
+		if (resource->Load(name, std::forward<Args>(args)...) == false) {
 			Logger::Error("Could not load resource: ", key);
 			return res_t<T>();
 
