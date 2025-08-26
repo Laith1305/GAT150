@@ -59,41 +59,7 @@ void SpaceGame::Update(float dt)
     case SpaceGame::GameState::StartRound:
     {
         m_scene->RemoveAllActors();
-
-
-
-        /*
-        // create player
-        //std::shared_ptr<viper::Model> model = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 0.0f, 0.4f, 1.0f });
-        viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f, viper::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 5 };
-        auto player = std::make_unique<Player>(transform);
-        player->speed = 1500.0f;
-        player->rotationRate = 180.0f;
-        //player->damping = 1.5f;
-        player->name = "player";
-        player->tag = "player";
-
-
-        auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
-        spriteRenderer->textureName = "textures/blue_05.png";
-        player->AddComponent(std::move(spriteRenderer));
-
-
-        auto rb = std::make_unique<viper::RigidBody>();
-        rb->damping = 1.5f;
-        player->AddComponent(std::move(rb));
-
-        auto collider = std::make_unique<viper::CircleCollider2D>();
-        collider->radius = 60;
-        player->AddComponent(std::move(collider));
-
-
-        m_scene->AddActor(std::move(player));
-        */
-
         m_gameState = GameState::Game;
-
-
     }
         break;
     case SpaceGame::GameState::Game:
@@ -138,6 +104,8 @@ void SpaceGame::Update(float dt)
 }
 
 void SpaceGame::Draw(viper::Renderer& renderer) {
+    m_scene->Draw(renderer);
+
     if (m_gameState == GameState::Title) {
         m_titleText->Create(renderer, "PIT VIPER", viper::vec3{ 1, 0, 0 });
         m_titleText->Draw(renderer, 400, 400);
@@ -153,7 +121,6 @@ void SpaceGame::Draw(viper::Renderer& renderer) {
     m_livesText->Create(renderer, "LIVES  " + std::to_string(m_lives), {1, 1, 1});
     m_livesText->Draw(renderer, (float)(renderer.GetWidth() - 200), (float)20);
 
-    m_scene->Draw(renderer);
 
     viper::GetEngine().GetPS().Draw(renderer);
 }

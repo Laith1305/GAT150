@@ -100,10 +100,10 @@
       <Filter>Source\Components</Filter>
     </ClCompile>
     <ClCompile Include="Math\Transform.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\Math</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

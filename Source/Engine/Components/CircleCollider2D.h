@@ -14,6 +14,10 @@ namespace viper {
 		void Update(float dt) override;
 
 		bool CheckCollission(ColliderComponent& other) override;
+		
+		
+		void Read(const json::value_t& value) override;
+
 
 	};
 }

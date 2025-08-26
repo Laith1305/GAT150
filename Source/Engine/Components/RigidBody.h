@@ -12,5 +12,9 @@ namespace viper {
 
 
 		void Update(float dt) override;
+
+		void Read(const json::value_t& value) override;
+
+
 	};
 }

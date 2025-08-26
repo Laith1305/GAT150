@@ -1,6 +1,7 @@
 #include "Json.h"
 #include "Core/File.h"
 #include "Logger.h"
+#include<rapidjson/istreamwrapper.h>
 
 #include <iostream>
 
@@ -12,6 +13,8 @@ namespace viper::json {
             Logger::Error("Could not read file: {}", filename);
             return false;
         }
+
+        Logger::Info("JSON: {}", buffer);
 
         // Convert the string into a json stream
         std::stringstream stream(buffer);
@@ -39,7 +42,7 @@ namespace viper::json {
         return true;
     }
 
-    bool Read(const value_t& value, const std::string& name, float& data, bool required) {
+    bool json::Read(const value_t& value, const std::string& name, float& data, bool required) {
         // Check if the value has the "<name>" and the correct data type
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsFloat()) {
             if (required) Logger::Error("Could not read Json value (float): {}", name);
