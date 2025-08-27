@@ -18,12 +18,17 @@
 FACTORY_REGISTER(Enemy)
 
 
+void Enemy::Start(){
+    m_rigidBody = owner->GetComponent<viper::RigidBody>();
+    fireTimer = fireTime;
+}
+
 void Enemy::Update(float dt)
 {
-    /*
+    
     bool playerSeen = false;
 
-    Actor* player = owner->scene->GetActorByName<Actor>("player");
+    auto player = owner->scene->GetActorByName<viper::Actor>("player");
     if (player) {
         viper::vec2 direction{ 0, 0 };
         direction = player->transform.position - owner->transform.position;
@@ -46,9 +51,8 @@ void Enemy::Update(float dt)
 
     //GetComponent<viper::RigidBody>()->velocity += force * dt;
 
-    auto* rb = owner->GetComponent<viper::RigidBody>();
-    if (rb) {
-        rb->velocity += force * dt;
+    if (m_rigidBody) {
+        m_rigidBody->velocity += force * dt;
     }
 
 
@@ -64,7 +68,7 @@ void Enemy::Update(float dt)
         //std::shared_ptr<viper::Model> model = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 0.0f, 1.0f, 0.0f });
         // spawn rocket at player position and rotation
         viper::Transform transform{ owner->transform.position, owner->transform.rotation, 2.0f };
-        auto rocket = std::make_unique<Actor>(transform);
+        auto rocket = std::make_unique<viper::Actor>(transform);
         rocket->speed = 500.0f;
         rocket->lifespan = 1.5f;
         rocket->name = "rocket";
@@ -86,7 +90,7 @@ void Enemy::Update(float dt)
         scene->AddActor(std::move(rocket));
     }
 
-    Actor::Update(dt); */
+    Actor::Update(dt); 
 }
 
 void Enemy::OnCollision(viper::Actor* other)

@@ -7,13 +7,15 @@ namespace viper {
 	public:
 		std::string textureName;
 
-
+		res_t<Texture> texture;
 
 	public:
 
 		CLASS_PROTOTYPE(SpriteRenderer)
 
 
+
+		void Start() override;
 		// Inherited via RendererComponent
 		void Update(float dt) override;
 

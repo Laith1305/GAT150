@@ -3,7 +3,7 @@
 #include "Core/Serializable.h"
 
 namespace viper {
-	struct Transform :public Serializable {
+	struct Transform :public ISerializable {
 		vec2 position{ 0, 0 };
 		float rotation = 0;
 		float scale = 1;
