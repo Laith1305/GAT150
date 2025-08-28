@@ -47,6 +47,7 @@ void Enemy::Update(float dt)
             float angle = viper::vec2::SignedAngleBetween(forward, direction);
             angle = viper::math::sign(angle);
             owner->transform.rotation += viper::math::radToDeg(angle * 5 * dt);
+            m_rigidBody->ApplyTorque(angle);
         }
     }
 
@@ -55,10 +56,10 @@ void Enemy::Update(float dt)
 
     //GetComponent<viper::RigidBody>()->velocity += force * dt;
 
-    if (m_rigidBody) {
+    /*if (m_rigidBody) {
         m_rigidBody->velocity += force * dt;
-    }
-
+    }*/
+    m_rigidBody->ApplyForce(force);
 
 
     owner->transform.position.x = viper::math::wrap(owner->transform.position.x, 0.0f, (float)viper::GetEngine().GetRenderer().GetWidth());

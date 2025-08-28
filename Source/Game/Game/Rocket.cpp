@@ -7,16 +7,17 @@
 #include "Core/Random.h"
 #include "Player.h"
 
+
 FACTORY_REGISTER(Rocket)
 
 
 void Rocket::Update(float dt)
 {
-    /*
+    
     viper::vec2 force = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(transform.rotation)) * speed;
-    auto* rb = GetComponent<viper::RigidBody>();
+    auto* rb = owner->GetComponent<viper::RigidBody>();
     if (rb) {
-        rb->velocity = force;
+        rb->SetVelocity(force);
     }
 
     transform.position.x = viper::math::wrap(transform.position.x, 0.0f, (float)viper::GetEngine().GetRenderer().GetWidth());
@@ -34,7 +35,7 @@ void Rocket::Update(float dt)
 
     viper::GetEngine().GetPS().AddParticle(particle);
 
-    Actor::Update(dt); */
+    Actor::Update(dt); 
 }
 
 void Rocket::OnCollision(viper::Actor* other)

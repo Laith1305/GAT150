@@ -15,7 +15,7 @@
         {
           "type": "Player",
           "speed": 1500.0,
-          "rotationRate": 180,
+          "rotationRate": 30,
           "fireTime": 0.2
         },
         {
@@ -24,11 +24,8 @@
         },
         {
           "type": "RigidBody",
-          "damping": 1.5,
-          "velocity": [
-            0,
-            0
-          ]
+          "gravity": 0,
+          "angularDamping": 2.0
         },
         {
           "type": "CircleCollider2D",
@@ -73,6 +70,29 @@
       ]
     }
   ],
+  {
+    "name": "rocket",
+    "tag": "enemy",
+    "speed": 200,
+    "components": [
+      {
+        "type": "Rocket",
+        "speed": 200
+      },
+      {
+        "type": "SpriteRenderer",
+        "texture_Name": "Textures/missile-2.png"
+      },
+      {
+        "type": "RigidBody",
+        "gravity": 0
+      },
+      {
+        "type": "CircleCollider2D",
+        "radius": 60
+      }
+    ]
+  },
   "actors": [
     {
       "name": "sprite",
