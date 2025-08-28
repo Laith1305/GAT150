@@ -19,6 +19,10 @@ FACTORY_REGISTER(Enemy)
 
 
 void Enemy::Start(){
+    OBSERVER_ADD(player_dead);
+
+    viper::EventManager::Instance().AddObserver("player_dead", *this);
+
     m_rigidBody = owner->GetComponent<viper::RigidBody>();
     fireTimer = fireTime;
 }
@@ -98,7 +102,12 @@ void Enemy::OnCollision(viper::Actor* other)
 
     if (owner->tag != other->tag) {
         owner->destroyed = true;
-        owner->scene->GetGame()->AddPoints(100);
+
+        EVENT_NOTIFY_DATA(add_points, 100);
+        
+
+
+        
         for (int i = 0; i < 100; i++) {
             viper::Particle particle;
             particle.position = owner->transform.position;
@@ -109,4 +118,17 @@ void Enemy::OnCollision(viper::Actor* other)
             viper::GetEngine().GetPS().AddParticle(particle);
         }
     }
+}
+
+void Enemy::OnNotify(const viper::Event& event){
+    if (viper::equalsIgnoreCase(event.id, "player_dead")) {
+        owner->destroyed = true;
+    }
+}
+
+void Enemy::Read(const viper::json::value_t& value) {
+    Object::Read(value);
+
+    JSON_READ(value, speed);
+    JSON_READ(value, fireTime);
 }

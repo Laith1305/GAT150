@@ -108,7 +108,21 @@ void Player::OnCollision(viper::Actor* other)
 {
     if (owner->tag != other->tag) {
         owner->destroyed = true;
-        dynamic_cast<SpaceGame*>(owner->scene->GetGame())->OnPlayerDeath();
+
+        EVENT_NOTIFY(player_dead);
+
+        viper::EventManager::Instance().Notify(viper::Event{"player_dead", true});
+
+
+        /*for (int i = 0; i < 100; i++) {
+            viper::Particle particle;
+            particle.position = owner->transform.position;
+            particle.velocity = viper::random::onUnitCircle() * viper::random::getReal(10.0f);
+            particle.color = viper::vec3{ 1, 1, 1 };
+            particle.lifespan = 2;
+
+            viper::GetEngine().GetPS().AddParticle(particle);
+        }*/
     }
 }
 

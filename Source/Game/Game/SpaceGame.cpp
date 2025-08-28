@@ -14,6 +14,7 @@
 #include "Resources/ResourceManager.h"
 
 
+
 #include <vector>
 #include <Components/SpriteRenderer.h>
 #include <Components/MeshRenderer.h>
@@ -22,6 +23,12 @@
 
 bool SpaceGame::Initialize()
 {
+    OBSERVER_ADD(player_dead);
+    OBSERVER_ADD(add_points);
+
+    viper::EventManager::Instance().AddObserver("player_dead", *this);
+    viper::EventManager::Instance().AddObserver("add_points", *this);
+
     m_scene = std::make_unique<viper::Scene>(this);
 
     m_scene->Load("scene.json");
@@ -32,6 +39,12 @@ bool SpaceGame::Initialize()
     m_livesText = std::make_unique<viper::Text>(viper::ResourceManager::Instance().GetWithID<viper::Font>("ui_font", "arcadeclassic.ttf", 48.0f));
     
     return true;
+}
+
+
+
+void SpaceGame::Shutdown() {
+    //
 }
 
 void SpaceGame::Update(float dt)
@@ -63,7 +76,7 @@ void SpaceGame::Update(float dt)
 
         m_gameState = GameState::Game;
     }
-        break;
+    break;
     case SpaceGame::GameState::Game:
         m_enemySpawnTimer -= dt;
         if (m_enemySpawnTimer <= 0) {
@@ -120,11 +133,25 @@ void SpaceGame::Draw(viper::Renderer& renderer) {
     m_scoreText->Create(renderer, "SCORE  " + std::to_string(m_score), { 1, 1, 1 });
     m_scoreText->Draw(renderer, 20, 20);
 
-    m_livesText->Create(renderer, "LIVES  " + std::to_string(m_lives), {1, 1, 1});
+    m_livesText->Create(renderer, "LIVES  " + std::to_string(m_lives), { 1, 1, 1 });
     m_livesText->Draw(renderer, (float)(renderer.GetWidth() - 200), (float)20);
 
 
     viper::GetEngine().GetPS().Draw(renderer);
+}
+
+void SpaceGame::OnNotify(const viper::Event& event) {
+    if (viper::equalsIgnoreCase(event.id, "layer_dead")){
+        OnPlayerDeath();
+
+
+    }
+    else if (viper::equalsIgnoreCase(event.id, "add_points")) {
+        AddPoints(std::get<int>(event.data));
+    }
+
+
+
 }
 
 void SpaceGame::OnPlayerDeath() {
@@ -144,6 +171,4 @@ void SpaceGame::SpawnEnemy() {
     }
 }
 
-void SpaceGame::Shutdown() {
-    //
-}
+

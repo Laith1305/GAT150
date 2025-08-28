@@ -12,7 +12,7 @@ namespace viper {
 	class ResourceManager : public Singleton<ResourceManager> {
 	public:
 
-		void Clear() { m_resources.clear(); }
+		void RemoveAll() { m_resources.clear(); }
 
 		template<typename T, typename ... Args>
 		requires std::derived_from<T, Resource>

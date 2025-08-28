@@ -26,9 +26,11 @@ namespace viper {
 	}
 
 	void Engine::Shutdown() {
-		Resources().Clear();
+		Resources().RemoveAll();
 
+		Factory::Instance().RemoveAll();
 
+		EventManager::Instance().RemoveAll();
 
 		m_particleSystem->Shutdown();
 		m_audio->Shutdown();
