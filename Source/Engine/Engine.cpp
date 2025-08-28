@@ -3,12 +3,16 @@
 #include "Input/InputSystem.h"
 #include "Audio/AudioSystem.h"
 #include "Renderer/ParticleSystem.h"
+#include "Physics/Physics.h"
 
 namespace viper {
 
 	
 
 	bool Engine::Initialize() {
+
+		m_physics = std::make_unique<Physics>();
+		m_physics->Initialize();
 		m_renderer = std::make_unique<viper::Renderer>();
 		m_renderer->Initialize();
 		m_renderer->CreateWindow("Viper Engine", 1280, 1024, true);
@@ -36,6 +40,7 @@ namespace viper {
 		m_audio->Shutdown();
 		m_input->Shutdown();
 		m_renderer->Shutdown();
+		m_physics->Shutdown();
 	}
 
 	void Engine::Update() {
@@ -43,6 +48,7 @@ namespace viper {
 		m_input->Update();
 		m_audio->Update();
 		m_particleSystem->Update(m_time.GetDeltaTime());
+		m_physics->Update(m_time.GetDeltaTime());
 	}
 
 	void Engine::Draw()
