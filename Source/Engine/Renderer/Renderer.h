@@ -1,9 +1,11 @@
 #pragma once
 #include <SDL3/SDL.h>
+#include "Math/Rect.h"
 #include <SDL3_ttf/SDL_ttf.h>
 #include <iostream>
 #include <SDL3_image/SDL_image.h>
 #include "../Texture.h"
+#include <RigidBody.cpp>
 
 
 namespace viper {
@@ -33,6 +35,7 @@ namespace viper {
 
 		int GetWidth() const { return m_width; }
 		int GetHeight() const { return m_height; }
+		void DrawTexture(class Texture& texture, const rect& sourceRect, float x, float y, float angle, float scale = 1);
 		
 
 	private:

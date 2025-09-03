@@ -5,6 +5,7 @@
 #include "Engine.h"
 
 #include "Component.h"
+#include "Components/Animator.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/RigidBody.h"
 #include "Components/CircleCollider2D.h"
@@ -23,3 +24,4 @@
 #include "Renderer/Renderer.h"
 #include "Renderer/Text.h"
 #include "Texture.h"
+#include "Renderer/TextureAnimation.h"

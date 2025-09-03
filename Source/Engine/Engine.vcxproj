@@ -181,6 +181,7 @@
   <ItemGroup>
     <ClCompile Include="AudioClip.cpp" />
     <ClCompile Include="Audio\AudioSystem.cpp" />
+    <ClCompile Include="Components\Animator.cpp" />
     <ClCompile Include="Components\AudioSource.cpp" />
     <ClCompile Include="Components\CircleCollider2D.cpp" />
     <ClCompile Include="Components\MeshRenderer.cpp" />
@@ -210,6 +211,7 @@
     <ClCompile Include="Renderer\ParticleSystem.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\Text.cpp" />
+    <ClCompile Include="Renderer\TextureAnimation.cpp" />
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
@@ -217,6 +219,7 @@
     <ClInclude Include="AudioClip.h" />
     <ClInclude Include="Audio\AudioSystem.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Components\Animator.h" />
     <ClInclude Include="Components\AudioSource.h" />
     <ClInclude Include="Components\CircleCollider2D.h" />
     <ClInclude Include="Components\ColliderComponent.h" />
@@ -243,6 +246,7 @@
     <ClInclude Include="Json.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Math\Math.h" />
+    <ClInclude Include="Math\Rect.h" />
     <ClInclude Include="Math\Transform.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
@@ -255,6 +259,7 @@
     <ClInclude Include="Renderer\ParticleSystem.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Renderer\Text.h" />
+    <ClInclude Include="Renderer\TextureAnimation.h" />
     <ClInclude Include="Resources\Resource.h" />
     <ClInclude Include="Resources\ResourceManager.h" />
     <ClInclude Include="Singleton.h" />
