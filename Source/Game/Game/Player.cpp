@@ -18,7 +18,7 @@
 FACTORY_REGISTER(Player)
 
 void Player::Start() {
-
+    m_rigidBody = owner->GetComponent<viper::RigidBody>();
 }
 
 

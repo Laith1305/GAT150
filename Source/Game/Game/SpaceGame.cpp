@@ -26,12 +26,12 @@ bool SpaceGame::Initialize()
     OBSERVER_ADD(player_dead);
     OBSERVER_ADD(add_points);
 
+    m_scene = std::make_unique<viper::Scene>(this);
+    m_scene->Load("scene.json");
+
     viper::EventManager::Instance().AddObserver("player_dead", *this);
     viper::EventManager::Instance().AddObserver("add_points", *this);
 
-    m_scene = std::make_unique<viper::Scene>(this);
-
-    m_scene->Load("scene.json");
 
 
     m_titleText = std::make_unique<viper::Text>(viper::ResourceManager::Instance().GetWithID<viper::Font>("title_font", "arcadeclassic.ttf", 128.0f));

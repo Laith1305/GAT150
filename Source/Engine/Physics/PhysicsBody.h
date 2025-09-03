@@ -46,7 +46,7 @@ namespace viper {
 		void SetVelocity(const vec2& velocity);
 
 	private:
-		b2BodyId { /*Something*/ };
+		//b2BodyId { /*Something*/ };
 
 
 	};

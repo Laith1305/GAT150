@@ -23,7 +23,9 @@ namespace viper {
 
 		}
 
-		physicsBody = std::make_unique<PhysicsBody>(owner->transform, size, bodyDef, GetEngine().GetPhysics());
+		size *= scale;
+
+		physicsBody = std::make_unique<PhysicsBody>(owner->transform, size * scale, bodyDef, GetEngine().GetPhysics());
 	}
 
 	void RigidBody::Update(float dt) {
@@ -53,6 +55,7 @@ namespace viper {
 		Object::Read(value);
 		
 		JSON_READ(value, size);
+		JSON_READ(value, scale);
 
 
 		JSON_READ_NAME(value, "gravityScale", bodyDef.gravityScale);
